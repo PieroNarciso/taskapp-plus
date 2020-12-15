@@ -12,7 +12,7 @@ services:
     volumes:
       - ./src:/usr/src/app/src
     environment:
-      DB_URI: mongodb://db-dev:${DB_PORT}/main
+      DB_URI: mongodb://db-dev:27017/main
       API_PORT: ${API_PORT}
 
   db:
