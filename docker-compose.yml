@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  api:
+    image: api-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - "${API_PORT}:8080"
+    volumes:
+      - ./src:/usr/src/app/src
+    environment:
+      DB_URI: mongodb://db-dev:${DB_PORT}/main
+      API_PORT: ${API_PORT}
+
+  db:
+    container_name: db-dev
+    image: mongo:4.0-xenial
+    restart: always
+    ports:
+      - "${DB_PORT}:27017"
+    volumes:
+      - ./data:/data/db
