@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 
 const app = express()
@@ -18,6 +19,7 @@ mongoose.connect(DB_URI, OPTIONS, () => {
 
 // Middlewares
 app.use(express.json()) // Handle body requests (json)
+app.use(cors())
 
 
 // Routers
