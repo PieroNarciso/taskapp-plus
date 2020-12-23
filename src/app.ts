@@ -13,13 +13,18 @@ const OPTIONS: mongoose.ConnectionOptions = {
     useUnifiedTopology: true
 };
 mongoose.connect(DB_URI, OPTIONS, () => {
-
     console.log("DB Connected");
 });
 
 // Middlewares
 app.use(express.json()) // Handle body requests (json)
 
+
+// Routers
+import userRoute from './routes/user.routes';
+import taskRoute from './routes/task.routes';
+app.use('/api/users', userRoute);
+app.use('/api/tasks', taskRoute);
 app.get('/', (_req: Request, res: Response) => {
     res.send("Express Typescripts"); 
 })
