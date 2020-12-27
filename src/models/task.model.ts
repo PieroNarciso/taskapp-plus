@@ -6,7 +6,8 @@ import { TaskDocument } from '../interfaces/task.interface';
 const TaskSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     body: {
         type: String,

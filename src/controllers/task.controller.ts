@@ -3,10 +3,10 @@ import { Request, Response } from 'express';
 import TaskModel from '../models/task.model';
 
 
-export const getAllByUserId = async (req: Request, res: Response) => {
+export const getAll = async (req: Request, res: Response) => {
     try {
         const tasks = await TaskModel.find({
-            user: req.params._id
+            user: req.user!._id
         });
         res.status(200).send(tasks);
     } catch(err) {
@@ -16,7 +16,9 @@ export const getAllByUserId = async (req: Request, res: Response) => {
 
 export const postCreateTask = async (req: Request, res: Response) => {
     try {
-        const task = await TaskModel.create(req.body);
+        const tasksData = req.body
+        tasksData.user = req.user!._id;
+        const task = await TaskModel.create(tasksData);
         res.status(201).send(task);
     } catch(err) {
         res.status(400).send(err);
