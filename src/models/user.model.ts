@@ -22,7 +22,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         min: 8,
         max: 256,
-        select: false,
         required: true
     }
 })
