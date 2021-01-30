@@ -6,7 +6,6 @@ import { authenticateJWT } from '../auth';
 
 const router = Router()
 
-router.get('/', authenticateJWT, controller.getList);
 router.post('/', controller.createUser);
 router.post('/login', controller.loginUser);
 router.get('/:_id', authenticateJWT, controller.getById);
